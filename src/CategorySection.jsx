@@ -62,7 +62,7 @@ const pricingCards = [
   },
 ];
 
-export const CategorySection = () => {
+export const CategorySection = ({ onNavigateToService = () => {} }) => {
   return (
     <section className="grid grid-cols-1 min-[900px]:grid-cols-2 min-[1600px]:grid-cols-3 min-[1800px]:grid-cols-4 gap-8 px-4 sm:px-8 md:px-14 lg:px-26 pt-[50px] pb-[100px] relative self-stretch w-full justify-items-center">
       {pricingCards.map((card, cardIndex) => (
@@ -101,7 +101,17 @@ export const CategorySection = () => {
 
           <button
             onClick={() => {
-              alert(`${card.title} 서비스 준비 중입니다.`);
+              if (onNavigateToService) {
+                if (card.title === "기사 작성 · 생성") {
+                  onNavigateToService('article-writing');
+                } else if (card.title === "퇴고 · 교열") {
+                  onNavigateToService('proofreading');
+                } else if (card.title === "제목 생성") {
+                  onNavigateToService('title-generation');
+                } else if (card.title === "AI 도구") {
+                  onNavigateToService('ai-tools');
+                }
+              }
             }}
             className="border-2 border-solid border-[#00000026] hover:bg-black hover:text-white transition-colors flex items-center justify-center gap-2 px-4 py-3 absolute bottom-[35px] left-6 right-6 rounded-xl cursor-pointer group"
             aria-label={`${card.title} 더 알아보기`}

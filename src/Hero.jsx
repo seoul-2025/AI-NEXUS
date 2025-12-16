@@ -84,7 +84,7 @@ export const Hero = () => {
 
   return (
     <section 
-      className="flex min-h-[250px] md:h-[450px] lg:h-[603px] bg-cover bg-[50%_50%] flex-col items-center justify-center relative w-full overflow-hidden"
+      className="flex min-h-[240px] md:h-[440px] lg:h-[593px] bg-cover bg-[50%_50%] flex-col items-center justify-center relative w-full overflow-hidden"
       style={{
         background: 'linear-gradient(135deg, #0c1445 0%, #1a1a2e 50%, #16213e 100%)'
       }}

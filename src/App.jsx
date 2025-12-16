@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
 import { Desktop } from './Desktop';
+import { ArticleWritingPage } from './ArticleWritingPage';
+import { ProofreadingPage } from './ProofreadingPage';
+import { TitleGenerationPage } from './TitleGenerationPage';
+import { AIToolsPage } from './AIToolsPage';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('portal');
+  const [currentPage, setCurrentPage] = useState(() => {
+    return localStorage.getItem('currentPage') || 'portal';
+  });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [formData, setFormData] = useState({
@@ -54,10 +60,21 @@ function App() {
 
   const handleHomeClick = () => {
     if (currentPage === 'portal') {
-      window.location.reload();
+      window.scrollTo(0, 0);
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
     } else {
       setCurrentPage('portal');
+      localStorage.setItem('currentPage', 'portal');
+      window.scrollTo(0, 0);
     }
+  };
+
+  const handleNavigateToService = (serviceName) => {
+    setCurrentPage(serviceName);
+    localStorage.setItem('currentPage', serviceName);
+    window.scrollTo(0, 0);
   };
 
   const handleInputChange = (field, value) => {
@@ -93,6 +110,50 @@ function App() {
     />;
   }
 
+  if (currentPage === 'article-writing') {
+    return <ArticleWritingPage
+      isLoggedIn={isLoggedIn}
+      userEmail={userEmail}
+      onLoginClick={() => setCurrentPage('login')}
+      onLogout={handleLogout}
+      onHomeClick={handleHomeClick}
+      onNavigateToService={handleNavigateToService}
+    />;
+  }
+
+  if (currentPage === 'proofreading') {
+    return <ProofreadingPage
+      isLoggedIn={isLoggedIn}
+      userEmail={userEmail}
+      onLoginClick={() => setCurrentPage('login')}
+      onLogout={handleLogout}
+      onHomeClick={handleHomeClick}
+      onNavigateToService={handleNavigateToService}
+    />;
+  }
+
+  if (currentPage === 'title-generation') {
+    return <TitleGenerationPage
+      isLoggedIn={isLoggedIn}
+      userEmail={userEmail}
+      onLoginClick={() => setCurrentPage('login')}
+      onLogout={handleLogout}
+      onHomeClick={handleHomeClick}
+      onNavigateToService={handleNavigateToService}
+    />;
+  }
+
+  if (currentPage === 'ai-tools') {
+    return <AIToolsPage
+      isLoggedIn={isLoggedIn}
+      userEmail={userEmail}
+      onLoginClick={() => setCurrentPage('login')}
+      onLogout={handleLogout}
+      onHomeClick={handleHomeClick}
+      onNavigateToService={handleNavigateToService}
+    />;
+  }
+
   return (
     <div className="App">
       <Desktop 
@@ -101,6 +162,7 @@ function App() {
         onLoginClick={() => setCurrentPage('login')}
         onLogout={handleLogout}
         onHomeClick={handleHomeClick}
+        onNavigateToService={handleNavigateToService}
       />
     </div>
   );

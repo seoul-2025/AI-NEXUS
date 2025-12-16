@@ -1,11 +1,11 @@
 import React from "react";
 import { FeaturesSection } from "./FeaturesSection";
 import { HeaderSection } from "./HeaderSection";
-import { HeroSection } from "./HeroSection";
-import { CategorySection } from "./CategorySection";
-import { Hero } from "./Hero";
+import { TitleGenerationHeroSection } from "./TitleGenerationHeroSection";
+import { TitleCategorySection } from "./TitleCategorySection";
+import { TitleGenerationHero } from "./TitleGenerationHero";
 
-export const Desktop = ({ isLoggedIn, userEmail, onLoginClick, onLogout, onHomeClick, onNavigateToService }) => {
+export const TitleGenerationPage = ({ isLoggedIn, userEmail, onLoginClick, onLogout, onHomeClick, onNavigateToService }) => {
   return (
     <div className="flex flex-col w-full min-h-screen items-start relative bg-white">
       <HeaderSection 
@@ -16,12 +16,12 @@ export const Desktop = ({ isLoggedIn, userEmail, onLoginClick, onLogout, onHomeC
         onHomeClick={onHomeClick}
         onNavigateToService={onNavigateToService}
       />
-      <Hero />
+      <TitleGenerationHero />
 
       <div className="relative self-stretch w-full h-0" />
 
-      <HeroSection />
-      <CategorySection onNavigateToService={onNavigateToService} />
+      <TitleGenerationHeroSection />
+      <TitleCategorySection onNavigateToService={onNavigateToService} />
       <div className="relative w-full h-[87px]" />
 
       <FeaturesSection />
