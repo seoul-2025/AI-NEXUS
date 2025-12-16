@@ -1,0 +1,22 @@
+{
+  "s3": {
+    "bucket": "ai-nexus-app",
+    "region": "ap-northeast-2",
+    "indexDocument": "index.html",
+    "errorDocument": "index.html"
+  },
+  "cloudfront": {
+    "customErrorResponses": [
+      {
+        "errorCode": 403,
+        "responseCode": 200,
+        "responsePagePath": "/index.html"
+      },
+      {
+        "errorCode": 404,
+        "responseCode": 200,
+        "responsePagePath": "/index.html"
+      }
+    ]
+  }
+}

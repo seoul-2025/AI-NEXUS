@@ -9,14 +9,15 @@ export const Hero = () => {
     let animationFrameId;
 
     const resizeCanvas = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
     };
 
     class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+      constructor(width = canvas.width, height = canvas.height) {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
         this.vx = (Math.random() - 0.5) * 0.5;
         this.vy = (Math.random() - 0.5) * 0.5;
         this.radius = Math.random() * 2 + 1;
@@ -39,10 +40,19 @@ export const Hero = () => {
       }
     }
 
-    const particles = [];
-    for (let i = 0; i < 50; i++) {
-      particles.push(new Particle());
-    }
+    let particles = [];
+    
+    const initParticles = () => {
+      particles = [];
+      for (let i = 0; i < 50; i++) {
+        particles.push(new Particle(canvas.width, canvas.height));
+      }
+    };
+
+    const handleResize = () => {
+      resizeCanvas();
+      initParticles();
+    };
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -72,12 +82,13 @@ export const Hero = () => {
     };
 
     resizeCanvas();
+    initParticles();
     animate();
 
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
