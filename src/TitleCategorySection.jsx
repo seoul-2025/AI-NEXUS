@@ -17,7 +17,7 @@ const titleServices = [
 
 export const TitleCategorySection = ({ onNavigateToService = () => {} }) => {
   return (
-    <section className="grid grid-cols-1 min-[800px]:grid-cols-2 min-[1400px]:grid-cols-3 gap-8 px-4 xs:pl-[50px] xs:pr-[50px] sm:pl-[58px] sm:pr-[58px] md:pl-[64px] md:pr-[64px] lg:pl-[114px] lg:pr-[114px] pt-[50px] pb-[100px] relative self-stretch w-full justify-items-center">
+    <section className="grid grid-cols-1 min-[800px]:grid-cols-2 min-[1400px]:grid-cols-3 gap-8 px-4 xs:pl-[50px] xs:pr-[50px] sm:pl-[58px] sm:pr-[58px] md:pl-[64px] md:pr-[64px] lg:pl-[114px] lg:pr-[114px] pt-[50px] pb-[220px] relative self-stretch w-full justify-items-center">
       {titleServices.map((service, index) => (
         <article
           key={index}

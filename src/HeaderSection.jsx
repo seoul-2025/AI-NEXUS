@@ -11,7 +11,13 @@ export const HeaderSection = ({ isLoggedIn, userEmail, onLoginClick, onLogout, o
           AI NEXUS
         </h1>
         
-        <nav className="hidden min-[900px]:flex items-center gap-[92px]">
+        <nav className="hidden min-[900px]:flex items-center gap-[72px]">
+        <button 
+          onClick={() => onNavigateToService('all-services')}
+          className="px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 transition-colors"
+        >
+          ALL
+        </button>
         <button 
           onClick={() => onNavigateToService('article-writing')}
           className="px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 transition-colors"

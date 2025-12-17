@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
 import { Desktop } from './Desktop';
+import { AllServicesPage } from './AllServicesPage';
 import { ArticleWritingPage } from './ArticleWritingPage';
 import { ProofreadingPage } from './ProofreadingPage';
 import { TitleGenerationPage } from './TitleGenerationPage';
@@ -107,6 +108,17 @@ function App() {
       onInputChange={handleInputChange}
       onBackToLogin={() => setCurrentPage('login')}
       onHomeClick={handleHomeClick}
+    />;
+  }
+
+  if (currentPage === 'all-services') {
+    return <AllServicesPage
+      isLoggedIn={isLoggedIn}
+      userEmail={userEmail}
+      onLoginClick={() => setCurrentPage('login')}
+      onLogout={handleLogout}
+      onHomeClick={handleHomeClick}
+      onNavigateToService={handleNavigateToService}
     />;
   }
 
